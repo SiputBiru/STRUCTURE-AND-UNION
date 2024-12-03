@@ -3,22 +3,14 @@
 #include <iomanip>
 
 const double pi = 3.1416;
-//deklarasi pi sebagai konstan dengan nilai 3.1416
 
 struct koordinat {
     int x;
     int y;
 };
-//data structure berupa x dan y yang akan digunakan sebagai titik 1 dan titik 2
-
-//berikut fungsi yang akan digunakan dalam program:
 double distance(koordinat& t1, koordinat& t2);
-// t1 adalah titik 1 sementara t2 adalah titik 2
 
 double radius(koordinat& pusat, koordinat& titik);
-/*titik 1 dianggap sebagai pusat lingkaran sementara titik 2 
-dianggap sebagai titik yang berada di keliling lingkaran
-*/
 
 double circumference(double radius);
 double area(double radius);
@@ -26,7 +18,6 @@ double area(double radius);
 int main(){
     koordinat t1, t2;
 
-    //bagian input pengguna
     std:: cout << "Input koordinat titik pertama: " << '\n';
     std:: cout << "x = "; std:: cin >> t1.x;
     std:: cout << "y = "; std:: cin >> t1.y;
@@ -71,24 +62,6 @@ double circumference(double radius){
 double area(double radius){
     return pi*pow(radius, 2);
 }
-
-/* Properti fungsi-fungsi yang digunakan:
-
-1) double distance(koordinat& t1, koordinat& t2)
-Formal Parameter = koordinat& t1 dan koordinat& t2
-Actual Parameter = t1 dan t2
-Function Signature = distance(koordinat&, koordinat&)
-
-2) double radius(koordinat& pusat, koordinat& titik)
-Formal Parameter = koordinat& pusat dan koordinat& titik
-Formal Parameter = t1 dan t2
-Function Signature = radius(koordinat&, koordinat&)
-
-3) double circumference(double radius)
-Formal Parameter = double radius
-Actual Parameter = jari_jari
-Function Signature = circumference(double)
-
 4) double area(double radius)
 Formal Parameter = double radius
 Actual Parameter = jari_jari

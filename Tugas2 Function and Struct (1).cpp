@@ -11,19 +11,15 @@ struct studentType{
     int testScore;
     char grade;
 };
-//struct yang diminta oleh soal
 
 studentType siswa[20];
-//deklarasi array siswa dengan index 20 dan bertipe studentType
 
 void data_siswa();
 void nilai_siswa();
 int nilaimaks(studentType listnilai[]);
 string pemiliknilai(int nilai);
-//deklarasi fungsi-fungsi yang akan digunakan pada bagian main
 
 const int jumlah_siswa = 20;
-//jumlah siswa, bisa disesuaikan lagi agar mudah dalam pengecekan program (testing)
 int main(){
     data_siswa();
     nilai_siswa();
@@ -36,18 +32,13 @@ int main(){
 }
 
 void data_siswa(){
-    /*fungsi untuk mendapatkan data identitas 
-    siswa berupa nama depan dan belakang siswa dari data csv
-    */
     ifstream file ("data siswa.csv");
     int i=0;
 
     string line;
 
     getline(file, line);
-    //lewati data pada baris pertama yang merupakan header saja
-
-    while (getline(file, line) && i < jumlah_siswa){
+     while (getline(file, line) && i < jumlah_siswa){
         istringstream ss(line);
         string namadepan, namabelakang, stringnilai;
         int nilaites;
@@ -55,9 +46,6 @@ void data_siswa(){
         getline(ss, namadepan, ',');
         getline(ss, namabelakang, ',');
         getline(ss, stringnilai, ',');
-        /*membaca data yang ada pada file csv
-        lalu meng-assign string pada csv menuju 
-        variabel yang sesuai*/
         nilaites = stoi(stringnilai);
 
         siswa[i].studentFName = namadepan;
@@ -69,7 +57,7 @@ void data_siswa(){
     file.close();
 }
 
-void nilai_siswa(){//fungsi untuk membaca nilai siswa pada data csv
+void nilai_siswa(){
     for (int j=0; j<jumlah_siswa; j++){
         if(siswa[j].testScore >= 85){
             siswa[j].grade = 'A';
@@ -83,7 +71,7 @@ void nilai_siswa(){//fungsi untuk membaca nilai siswa pada data csv
         else{
             siswa[j].grade = 'D';
         }
-    }   //penetapan predikat pada setiap siswa sesuai nilainya
+    }   
 
     cout  << '\n'
                 << "Berikut tabel nilai siswa satu kelas:" << '\n'
@@ -97,16 +85,13 @@ void nilai_siswa(){//fungsi untuk membaca nilai siswa pada data csv
                     << siswa[k].studentLName + ", " + siswa[k].studentFName 
                     << setw(13) << siswa[k].testScore
                     << setw(5) <<  siswa[k].grade;
-                    /*output berupa tabel sehingga diperlukan jarak dari 
-                    setiap keluaran agar mudah dibaca dan rapi
-                    */
         cout << '\n';
     }
     
     cout << '\n';
 }
 
-int nilaimaks(studentType listnilai[]){//fungsi untuk mencari nilai tertinggi dari siswa
+int nilaimaks(studentType listnilai[]){
     int nilaitop = 0;
 
     for(int i=0; i<jumlah_siswa; i++){
@@ -114,18 +99,11 @@ int nilaimaks(studentType listnilai[]){//fungsi untuk mencari nilai tertinggi da
             nilaitop = listnilai[i].testScore;
         }
     }
-    //algoritma pencarian nilai tertinggi pada array nilai siswa yang sudah diinputkan sebelumnya
-    /*jika variabel nilaitop saat ini lebih dari nilai yang ditemukan di array, maka nilai array
-    akan menggantikan nilai dari variabel nilaitop, jika sama atau kurang dari nilai pada array,
-    maka nilaitop akan tetap seperti sebelumnya lalu loop berlanjut ke i selanjutnya*/
 
     return nilaitop;
-    //keluaran berupa nilai maksimum yang ada pada array student bagian testScore
 }
 
-string pemiliknilai(int nilai){//fungsi untuk mencari pemilik nilai tertinggi
-    /*menggunakan input nilai yang didapat dari fungsi nilaimaks maka akan dicari nama pada array student yang
-    memiliki nilai tersebut, setelah ketemu nilai yang sama, maka pemiliknya yaitu siswa ke-i akan disebut namanya*/
+string pemiliknilai(int nilai){
     string pemilik;
 
     for(int i=0; i<jumlah_siswa; i++){
@@ -135,5 +113,4 @@ string pemiliknilai(int nilai){//fungsi untuk mencari pemilik nilai tertinggi
     }
     
     return pemilik;
-    //keluaran berupa string pemilik dengan nama pemilik nilai tertinggi
 }
